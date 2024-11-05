@@ -1,0 +1,22 @@
+Steps to Connect Jenkins Slave to Master:
+* Login to Jenkins Master (Controller):
+* Open your Jenkins dashboard in the browser (e.g., http://<Jenkins_Master_IP>:8080).
+
+Create a New Node (Slave):
+* From the Jenkins dashboard, go to Manage Jenkins.
+* Select Manage Nodes and Clouds (or Nodes depending on your version).
+* Click New Node on the left sidebar.
+* Enter the desired name for the node (e.g., sss).
+* Select Permanent Agent and click OK.
+* Set the Port number for the agent communication (e.g., 40933).
+* Click Save to create the node.
+
+Obtain the Agent Connection Command:
+* After saving the node configuration, Jenkins will show a command for connecting the slave to the master.
+* The command will be in the following format:
+-> curl -sO http://<Jenkins_Master_IP>:8080/jnlpJars/agent.jar
+-> java -jar agent.jar -url http://<Jenkins_Master_IP>:8080/ -secret <secret_key> -name <node_name> -webSocket -workDir "<slave_workdir>"
+
+Verify Connection:
+* After running the command, the slave node should connect to the master.
+* Go back to Jenkins dashboard, and under Manage Jenkins > Manage Nodes and, you should see the new node listed as online.
